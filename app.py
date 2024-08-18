@@ -35,7 +35,7 @@ api = Api(app, prefix=prefix, catch_all_404s=True)
 build_swagger_config_json()
 swaggerui_blueprint = get_swaggerui_blueprint(
     prefix,
-    f'http://{domain}{prefix}/swagger-config',
+    f'http://{domain}/swagger-config',
     config={
         'app_name': "Monitoramento de Frutas API",
         "layout": "BaseLayout",
