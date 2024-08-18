@@ -20,11 +20,11 @@ def cadastro():
         email = data['email']
         senha = data['senha']
         tipo_usuario = data['tipo_usuario']
-        tipo_usuario_id = TipoUsuario.query.filter_by(descricao=tipo_usuario).first().id
-    except Exception:
-        response['message'] = 'É necessário enviar um json com os campos "nome", "matricula", "email", "senha" e "tipo_usuario".'
+    except Exception as e:
+        response['message'] = f'É necessário enviar um json com os campos "nome", "matricula", "email", "senha" e "tipo_usuario". {e}'
         return response
     
+    tipo_usuario_id = TipoUsuario.query.filter_by(descricao=tipo_usuario).first().id
     usuario = Usuario.query.filter_by(email=email).first()
     
     
