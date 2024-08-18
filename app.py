@@ -1,7 +1,9 @@
-from distutils.log import debug
 from decouple import config
-from flask import Flask
+from flask import Flask, jsonify, redirect
+from flask_cors import CORS
 from flask_migrate import Migrate
+from flask_restful import Api, MethodNotAllowed, NotFound
+from flask_swagger_ui import get_swaggerui_blueprint
 from sys import argv
 
 from blueprints.usuario import usuario_blueprint
@@ -15,6 +17,9 @@ from models.usuario import Usuario
 from models.notificacao import Notificacao
 from models.usuario_notificacao import UsuarioNotificacao
 from models.tipo_usuario import TipoUsuario
+from resources.usuario import Usuario as UsuarioResource
+from resources.swagger_config import SwaggerConfig
+from util.commom import *
 
 app = Flask(__name__)
 
@@ -24,17 +29,49 @@ app.config['SQLALCHEMY_DATABASE_URI'] = conexao
 
 db.init_app(app)
 migrate = Migrate(app, db)
+CORS(app)
+api = Api(app, prefix=prefix, catch_all_404s=True)
 
+# Swagger
+build_swagger_config_json()
+swaggerui_blueprint = get_swaggerui_blueprint(
+    prefix,
+    f'http://{domain}:{port}{prefix}/swagger-config',
+    config={
+        'app_name': "Monitoramento de Frutas API",
+        "layout": "BaseLayout",
+        "docExpansion": "none"
+    },
+)
+app.register_blueprint(swaggerui_blueprint)
 app.register_blueprint(usuario_blueprint)
+
+# Error Handler
+@app.errorhandler(NotFound)
+def handle_method_not_found(e):
+    response = jsonify({"message": str(e)})
+    response.status_code = 404
+    return response
+
+
+@app.errorhandler(MethodNotAllowed)
+def handle_method_not_allowed_error(e):
+    response = jsonify({"message": str(e)})
+    response.status_code = 405
+    return response
+
+api.add_resource(SwaggerConfig, '/swagger-config')
+api.add_resource(UsuarioResource, '/usuarios')
 
 if 'populate' in argv:
     db_load_estado_data(app, db)
     db_load_fruta_data(app, db)
     db_load_tipo_usuario(app, db)
 
-@app.route('/', methods=['GET'])
-def hello():
-    return 'Hello, world!'
+# @app.route('/docs')
+# def redirect_to_prefix():
+#     if prefix != '':
+#         return redirect(prefix)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
