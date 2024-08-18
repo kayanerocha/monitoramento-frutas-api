@@ -6,7 +6,6 @@ from flask_restful import Api, MethodNotAllowed, NotFound
 from flask_swagger_ui import get_swaggerui_blueprint
 from sys import argv
 
-from blueprints.usuario import usuario_blueprint
 from database.database import db
 from database.populate import *
 from models.estado import Estado
@@ -44,7 +43,6 @@ swaggerui_blueprint = get_swaggerui_blueprint(
     },
 )
 app.register_blueprint(swaggerui_blueprint)
-app.register_blueprint(usuario_blueprint)
 
 # Error Handler
 @app.errorhandler(NotFound)
