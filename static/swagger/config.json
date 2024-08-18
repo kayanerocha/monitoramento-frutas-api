@@ -1,0 +1,158 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Monitoramento de Frutas API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    },
+    {
+      "url": "http://https://monitoramentofrutas.pythonanywhere.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "usuario",
+      "description": "CRUD Operations"
+    }
+  ],
+  "paths": {
+    "/usuarios": {
+      "get": {
+        "tags": [
+          "usuario"
+        ],
+        "summary": "Retorna todos os usuarios",
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Usuario"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "usuario"
+        ],
+        "summary": "Novo usuario",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Kayane"
+                  },
+                  "matricula": {
+                    "type": "string",
+                    "example": "G305353"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "kayanerocha.ti@gmail.com"
+                  },
+                  "senha": {
+                    "type": "string",
+                    "example": "kayane123"
+                  },
+                  "tipo_usuario": {
+                    "type": "string",
+                    "example": "Repositor",
+                    "options": [
+                      "Administrador",
+                      "Gerente",
+                      "Repositor"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuario cadastrado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "int",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "Kayane"
+          },
+          "matricula": {
+            "type": "string",
+            "example": "G305353"
+          },
+          "email": {
+            "type": "string",
+            "example": "kayanerocha.ti@gmail.com"
+          },
+          "senha": {
+            "type": "string",
+            "example": "kayane123"
+          },
+          "loja": {
+            "type": "string",
+            "example": "Dia"
+          },
+          "tipo_usuario": {
+            "type": "string",
+            "example": "Repositor",
+            "options": [
+              "Administrador",
+              "Gerente",
+              "Repositor"
+            ]
+          }
+        }
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "Java"
+          }
+        }
+      }
+    }
+  }
+}
