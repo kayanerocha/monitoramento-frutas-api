@@ -63,7 +63,7 @@
                   },
                   "senha": {
                     "type": "string",
-                    "example": "kayane123"
+                    "example": "senhacriptografada"
                   },
                   "tipo_usuario": {
                     "type": "string",
@@ -119,10 +119,6 @@
           "email": {
             "type": "string",
             "example": "kayanerocha.ti@gmail.com"
-          },
-          "senha": {
-            "type": "string",
-            "example": "kayane123"
           },
           "loja": {
             "type": "string",
