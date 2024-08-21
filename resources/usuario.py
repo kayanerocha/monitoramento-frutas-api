@@ -11,17 +11,18 @@ usuario_campos = {
     'nome': fields.String,
     'matricula': fields.String,
     'email': fields.String,
-    'senha': fields.String,
     'created': fields.DateTime,
-    'loja_id': fields.Integer,
-    'tipo_usuario_id': fields.Integer,
+    'loja': fields.String,
+    'tipo_usuario': fields.Integer,
     'ativo': fields.Integer
 }
 
 class Usuario(Resource):
     @marshal_with(usuario_campos)
     def get(self):
-        usuarios = UsuarioModel.query.all()
+        usuarios = db.session.query(
+            UsuarioModel.id, UsuarioModel.nome, UsuarioModel.matricula, UsuarioModel.email, UsuarioModel.ativo,
+            UsuarioModel.created).all()
         return usuarios
     
     def post(self):

@@ -9,7 +9,7 @@
       "url": "http://localhost:5000"
     },
     {
-      "url": "http://https://monitoramentofrutas.pythonanywhere.com"
+      "url": "https://monitoramentofrutas.pythonanywhere.com"
     }
   ],
   "tags": [
@@ -136,20 +136,6 @@
               "Gerente",
               "Repositor"
             ]
-          }
-        }
-      },
-      "Book": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "title": {
-            "type": "string",
-            "example": "Java"
           }
         }
       }

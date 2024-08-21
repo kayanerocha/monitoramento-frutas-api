@@ -72,4 +72,4 @@ if 'populate' in argv:
 #         return redirect(prefix)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

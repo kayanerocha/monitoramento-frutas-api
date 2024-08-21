@@ -37,7 +37,7 @@ def build_swagger_config_json():
 
     config_data['servers'] = [
         {"url": f"http://localhost:5000{prefix}"},
-        {"url": f"http://https://monitoramentofrutas.pythonanywhere.com{prefix}"}
+        {"url": f"https://monitoramentofrutas.pythonanywhere.com{prefix}"}
     ]
 
     new_config_file_path = f'{project_dir}/static/swagger/config.json'
