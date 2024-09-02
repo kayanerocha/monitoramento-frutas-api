@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from sqlalchemy import TIMESTAMP
 import datetime
 
