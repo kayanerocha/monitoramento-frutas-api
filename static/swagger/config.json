@@ -37,65 +37,6 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "usuario"
-        ],
-        "summary": "Novo usuario",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "nome": {
-                    "type": "string",
-                    "example": "Kayane"
-                  },
-                  "matricula": {
-                    "type": "string",
-                    "example": "G305353"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "kayanerocha.ti@gmail.com"
-                  },
-                  "senha": {
-                    "type": "string",
-                    "example": "senhacriptografada"
-                  },
-                  "tipo_usuario": {
-                    "type": "string",
-                    "example": "Repositor",
-                    "options": [
-                      "Administrador",
-                      "Gerente",
-                      "Repositor"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Usuario cadastrado com sucesso.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
   },
