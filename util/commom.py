@@ -36,7 +36,7 @@ def build_swagger_config_json():
         config_data = json.load(file)
 
     config_data['servers'] = [
-        {"url": f"http://localhost:5000{prefix}"},
+        {"url": f"http://15.228.162.164:5000{prefix}"},
         {"url": f"https://monitoramentofrutas.pythonanywhere.com{prefix}"}
     ]
 
